@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f5ef" />
+    <meta
+      name="description"
+      content="Give your lecture slides room for notes. Add proportional grid paper to a whole batch of PDFs, privately in your browser."
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>Slide Notes — Room to think.</title>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="wordmark" href="./" aria-label="Slide Notes home"
+          ><span class="brand-icon" aria-hidden="true">▤</span> slide notes<span
+            class="brand-period"
+            >.</span
+          ></a
+        >
+        <span class="privacy-pill"
+          ><span class="status-dot"></span> Your PDFs stay on your device</span
+        >
+      </header>
+
+      <main>
+        <section class="intro">
+          <div>
+            <p class="eyebrow">FOR LECTURES, AND THE THOUGHTS THEY START</p>
+            <h1>Your slides.<br /><em>Room to think.</em></h1>
+          </div>
+          <p class="intro-copy">
+            A little grid paper. A lot more space.<br />Give every slide a
+            margin for quick thoughts and a whole side for the bigger ideas.
+          </p>
+        </section>
+
+        <div class="workspace">
+          <section class="input-panel" aria-labelledby="upload-heading">
+            <div class="section-title">
+              <span class="step">01</span>
+              <h2 id="upload-heading">Bring your lectures</h2>
+            </div>
+            <label class="drop-zone" id="drop-zone" for="file-input">
+              <svg
+                class="upload-icon"
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M10 4H21L26 9V27H7V17M20 4V10H26M4 12H15M10 7L15 12L10 17"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <strong>Drop your PDFs here</strong
+              ><span>or <span class="browse-label">choose files</span></span
+              ><small>One lecture or the whole semester.</small>
+              <input
+                id="file-input"
+                type="file"
+                accept=".pdf,application/pdf"
+                multiple
+              />
+            </label>
+            <div class="file-list-heading" id="file-list-heading" hidden>
+              <span id="file-count"></span
+              ><button id="clear-files" class="text-button" type="button">
+                Clear all
+              </button>
+            </div>
+            <ul
+              class="file-list"
+              id="file-list"
+              aria-label="Selected PDFs"
+            ></ul>
+            <p
+              id="selection-message"
+              class="selection-message"
+              role="status"
+            ></p>
+
+            <fieldset id="settings" class="settings">
+              <legend><span class="step">02</span> Find your grid</legend>
+              <div class="setting-label">
+                <label for="grid-density">Square size</label
+                ><output id="density-label" for="grid-density">Classic</output>
+              </div>
+              <input
+                id="grid-density"
+                type="range"
+                min="28"
+                max="56"
+                step="2"
+                value="42"
+              />
+              <div class="range-labels">
+                <span>Roomier</span
+                ><button id="reset-grid" class="text-button" type="button">
+                  Reset</button
+                ><span>Finer</span>
+              </div>
+              <p class="setting-help" id="grid-help">
+                42 squares along the slide’s shorter edge. The familiar
+                proportions of 5 mm grid paper on A4.
+              </p>
+              <div class="tone-row">
+                <span>Grid lines</span>
+                <div class="segmented">
+                  <label
+                    ><input
+                      type="radio"
+                      name="tone"
+                      value="light"
+                      checked
+                    /><span>Soft</span></label
+                  ><label
+                    ><input type="radio" name="tone" value="dark" /><span
+                      >Defined</span
+                    ></label
+                  >
+                </div>
+              </div>
+            </fieldset>
+          </section>
+
+          <section class="preview-panel" aria-labelledby="preview-heading">
+            <div class="preview-top">
+              <div>
+                <span class="eyebrow">THE BIGGER PICTURE</span>
+                <h2 id="preview-heading">A place for every thought.</h2>
+              </div>
+              <span class="preview-badge" id="preview-badge"
+                >Example slide</span
+              >
+            </div>
+            <div class="preview-stage" id="preview-stage">
+              <div class="paper" id="paper">
+                <div
+                  class="grid-paper grid-left"
+                  aria-label="Half-width grid on the left"
+                ></div>
+                <div class="slide-frame" id="slide-frame">
+                  <div class="demo-slide" id="demo-slide">
+                    <span class="demo-kicker">A NOTE TO YOURSELF</span>
+                    <p>Good ideas<br />need a little<br /><em>room.</em></p>
+                    <span class="demo-footer">LECTURE 01 <span>↗</span></span>
+                  </div>
+                  <canvas
+                    id="preview-canvas"
+                    hidden
+                    aria-label="Preview of the selected PDF page"
+                  ></canvas>
+                </div>
+                <div
+                  class="grid-paper grid-right"
+                  aria-label="Full-width grid on the right"
+                ></div>
+              </div>
+              <div class="layout-labels" aria-hidden="true">
+                <span>½ × slide width</span><span>Your original slide</span
+                ><span>1 × slide width</span>
+              </div>
+            </div>
+            <div class="preview-navigation">
+              <p id="preview-caption">Same slide. More possibilities.</p>
+              <div id="page-controls" class="page-controls" hidden>
+                <button
+                  id="previous-page"
+                  class="icon-button"
+                  type="button"
+                  aria-label="Previous page"
+                >
+                  ←</button
+                ><span id="page-number"></span
+                ><button
+                  id="next-page"
+                  class="icon-button"
+                  type="button"
+                  aria-label="Next page"
+                >
+                  →
+                </button>
+              </div>
+            </div>
+            <p class="preview-error" id="preview-error" role="status"></p>
+            <div class="export-area">
+              <div class="export-copy">
+                <h3>Ready for your next lecture.</h3>
+                <p>Every page extended. Each PDF kept separate.</p>
+              </div>
+              <button
+                id="convert-button"
+                class="primary-button"
+                type="button"
+                disabled
+              >
+                <span>Make room for notes</span
+                ><span aria-hidden="true">↗</span>
+              </button>
+              <div id="progress-area" class="progress-area" hidden>
+                <div class="progress-caption">
+                  <span id="progress-label" role="status"></span
+                  ><button id="cancel-button" class="text-button" type="button">
+                    Cancel
+                  </button>
+                </div>
+                <progress
+                  id="progress"
+                  max="100"
+                  value="0"
+                  aria-label="PDF conversion progress"
+                ></progress>
+              </div>
+              <div id="download-area" class="download-area" hidden>
+                <p id="result-summary" role="status"></p>
+                <a
+                  id="download-zip"
+                  class="primary-button download-button"
+                  download="slide-notes.zip"
+                  ><span>Download all as ZIP</span
+                  ><span aria-hidden="true">↓</span></a
+                >
+              </div>
+              <p class="export-footnote">
+                Original quality. Proportional squares. No uploads.
+              </p>
+            </div>
+          </section>
+        </div>
+
+        <section class="details-strip" aria-label="How it works">
+          <div>
+            <span class="detail-number">½ + 1 + 1</span>
+            <p>
+              A small margin, your slide,<br />and a full page of possibilities.
+            </p>
+          </div>
+          <div>
+            <span class="detail-number">Always in proportion</span>
+            <p>
+              The grid scales with each page.<br />Small slides, big slides,
+              same feel.
+            </p>
+          </div>
+          <div>
+            <span class="detail-number">Just your browser</span>
+            <p>
+              No account. No installation.<br />Your lecture files stay yours.
+            </p>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <span>Made for the margins.</span
+        ><a
+          href="https://github.com/yllkryeziu/slide-notes"
+          target="_blank"
+          rel="noreferrer"
+          >View on GitHub ↗</a
+        >
+      </footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
