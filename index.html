@@ -6,17 +6,101 @@
     <meta name="theme-color" content="#ffffff" />
     <meta
       name="description"
-      content="Add proportional grid paper to your lecture PDFs. Batch processing, entirely in your browser."
+      content="Add grid paper and note-taking margins to lecture PDFs online for free. Extend a whole batch, keep each PDF separate, and download a ZIP. No uploads or signup."
+    />
+    <link rel="canonical" href="https://yllkryeziu.github.io/slide-notes/" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Slide Notes" />
+    <meta
+      property="og:title"
+      content="Add Grid Paper to PDFs for Notes — Slide Notes"
+    />
+    <meta
+      property="og:description"
+      content="Free grid-paper margins for lecture slides. Process multiple PDFs in your browser and download separate files in one ZIP. No uploads."
+    />
+    <meta
+      property="og:url"
+      content="https://yllkryeziu.github.io/slide-notes/"
+    />
+    <meta
+      property="og:image"
+      content="https://yllkryeziu.github.io/slide-notes/social-preview.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Slide Notes adds a half-width grid margin to the left of a PDF slide and a full-width grid margin to its right."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Add Grid Paper to PDFs for Notes — Slide Notes"
+    />
+    <meta
+      name="twitter:description"
+      content="Free grid-paper margins for lecture slides. Batch PDF processing, no uploads, and separate downloads in one ZIP."
+    />
+    <meta
+      name="twitter:image"
+      content="https://yllkryeziu.github.io/slide-notes/social-preview.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="A PDF slide with grid paper added on both sides for handwritten notes."
     />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    <title>Slide Notes</title>
+    <title>Add Grid Paper to PDFs for Notes — Slide Notes</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://yllkryeziu.github.io/slide-notes/#webpage",
+        "url": "https://yllkryeziu.github.io/slide-notes/",
+        "name": "Add Grid Paper to PDFs for Notes — Slide Notes",
+        "description": "A free browser tool for adding proportional grid-paper margins to lecture PDFs, with batch processing and separate PDF downloads.",
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://yllkryeziu.github.io/slide-notes/social-preview.png",
+          "width": 1200,
+          "height": 630
+        },
+        "mainEntity": {
+          "@type": "WebApplication",
+          "@id": "https://yllkryeziu.github.io/slide-notes/#app",
+          "name": "Slide Notes",
+          "url": "https://yllkryeziu.github.io/slide-notes/",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Any",
+          "browserRequirements": "Requires JavaScript and a modern web browser.",
+          "isAccessibleForFree": true,
+          "featureList": [
+            "Add grid-paper margins to both sides of PDF slides",
+            "Process multiple PDFs in one batch",
+            "Adjust proportional grid square size and contrast",
+            "Download separate PDFs in a ZIP",
+            "Process files locally without uploading them"
+          ]
+        }
+      }
+    </script>
   </head>
   <body>
     <main class="app">
       <header>
-        <h1>Slide Notes</h1>
-        <p>Add grid paper beside your lecture slides.</p>
+        <h1>Add grid paper to PDFs</h1>
+        <p>Slide Notes adds space for lecture notes. Free, with no uploads.</p>
       </header>
+      <noscript
+        ><p class="message">
+          Enable JavaScript to select and process PDFs. Your files are processed
+          in your browser and are never uploaded.
+        </p></noscript
+      >
       <section aria-label="Select PDFs">
         <label class="drop-zone" id="drop-zone" for="file-input">
           <strong>Choose PDFs</strong><span>or drop them here</span>
@@ -154,6 +238,52 @@
           >
         </div>
       </section>
+      <details class="help">
+        <summary>How to add note-taking margins to a PDF</summary>
+        <div class="help-content">
+          <p>
+            Slide Notes extends each PDF page with graph paper: half the slide’s
+            width on the left and a full slide’s width on the right. The
+            original slide keeps its size, giving you space for handwritten
+            notes beside the content.
+          </p>
+          <ol>
+            <li>
+              Select or drop in your lecture PDFs. You can process multiple
+              files together.
+            </li>
+            <li>
+              Preview a page and adjust the grid square size or line contrast.
+            </li>
+            <li>
+              Choose <strong>Add grid paper</strong>, then download the ZIP.
+              Each lecture stays a separate PDF with <code>-notes</code> added
+              to its filename.
+            </li>
+          </ol>
+          <h2>Does the grid scale with different PDF sizes?</h2>
+          <p>
+            Yes. The default grid has 42 squares along the slide’s shorter edge,
+            matching the proportions of 5 mm graph paper on A4. Squares scale
+            with each page, including mixed-size and rotated slides. Their
+            printed size depends on your print settings.
+          </p>
+          <h2>Can I use the PDFs on an iPad or Mac?</h2>
+          <p>
+            Import the downloaded PDFs into a PDF annotation app, such as
+            Goodnotes, Notability, or Preview on Mac, and write in the new
+            margins. The tool runs in a modern browser with no installation or
+            account.
+          </p>
+          <h2>Are my lecture files uploaded?</h2>
+          <p>
+            No. Previewing, adding the grid, and creating the ZIP all happen on
+            your device. The PDF text and artwork stay at their original
+            quality. Password-protected PDFs need to be exported as unlocked
+            copies first.
+          </p>
+        </div>
+      </details>
       <footer>
         <span>Your files stay on your device.</span
         ><a

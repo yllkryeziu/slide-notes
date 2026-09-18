@@ -1,8 +1,19 @@
 import "./style.css";
-import { getDocument, GlobalWorkerOptions } from "pdfjs-dist";
 import pdfWorkerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 
-GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
+let previewLibrary;
+function loadPreviewLibrary() {
+  previewLibrary ??= import("pdfjs-dist")
+    .then((library) => {
+      library.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
+      return library;
+    })
+    .catch((error) => {
+      previewLibrary = null;
+      throw error;
+    });
+  return previewLibrary;
+}
 const $ = (id) => document.getElementById(id);
 const state = {
   files: [],
@@ -193,7 +204,11 @@ async function selectPreview(item) {
   $("preview-canvas").hidden = true;
   $("demo-slide").hidden = false;
   try {
-    const data = new Uint8Array(await item.file.arrayBuffer());
+    const [buffer, { getDocument }] = await Promise.all([
+      item.file.arrayBuffer(),
+      loadPreviewLibrary(),
+    ]);
+    const data = new Uint8Array(buffer);
     if (generation !== state.previewGeneration) return;
     const assetBase = new URL("./pdfjs/", document.baseURI).href;
     const loadingTask = getDocument({

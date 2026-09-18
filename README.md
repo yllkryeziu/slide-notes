@@ -58,3 +58,20 @@ PDF checks compare rendered slides before and after conversion at all four rotat
 The included workflow tests and builds the app, then deploys it on every push to `main`. Set **Settings → Pages → Source** to **GitHub Actions** once for the repository.
 
 Built with [pdf-lib](https://pdf-lib.js.org/), [PDF.js](https://mozilla.github.io/pdf.js/), [fflate](https://github.com/101arrowz/fflate), and [Vite](https://vite.dev/).
+
+## Search and indexing
+
+The published HTML includes a descriptive title and description, one canonical URL, Open Graph and Twitter link previews, and descriptive WebPage/WebApplication JSON-LD. The expandable help text is in the original HTML, so it is accessible without rendering JavaScript. The preview library only downloads after a PDF is selected, keeping the initial page light. The application schema describes the actual tool; it does not contain invented reviews or claim eligibility for review rich results.
+
+The sitemap is at **https://yllkryeziu.github.io/slide-notes/sitemap.xml**. Search Console setup requires the site owner’s Google account:
+
+1. In [Google Search Console](https://search.google.com/search-console/), add the **URL-prefix** property `https://yllkryeziu.github.io/slide-notes/`.
+2. Use HTML tag verification. Add the exact `google-site-verification` meta tag Google provides to `index.html`, deploy it, then click **Verify**. Keep the tag in future releases.
+3. Submit `sitemap.xml` in the property’s **Sitemaps** report.
+4. Inspect `https://yllkryeziu.github.io/slide-notes/` and choose **Request indexing**. Monitor impressions, queries, and clicks in the Performance report.
+
+This project is hosted in a subdirectory. Google reads `robots.txt` only at the hostname root (`https://yllkryeziu.github.io/robots.txt`); a file inside `/slide-notes/` would not control crawling. At setup, the root returned 404, which does not block crawling. If a root robots file is added to the separate personal-site repository later, it can advertise this sitemap with `Sitemap: https://yllkryeziu.github.io/slide-notes/sitemap.xml`.
+
+The sitemap is prepared for submission; publishing it alone is not a confirmed submission to Google. Google decides when to crawl and index the page. See [Google’s sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap) and [site verification instructions](https://support.google.com/webmasters/answer/9008080).
+
+To regenerate the 1200 × 630 link-preview image after a design change, run `node scripts/create-social-preview.mjs`.
