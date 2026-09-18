@@ -38,16 +38,12 @@ function updateGrid() {
     tone() === "dark" ? "#a6b8b5" : "#ccd9d6",
   );
   $("density-label").textContent =
-    divisions === 42 ? "Classic" : divisions < 42 ? "Roomier" : "Finer";
+    divisions === 42 ? "Standard" : divisions < 42 ? "Larger" : "Smaller";
   density.setAttribute(
     "aria-valuetext",
     `${divisions} squares along the shorter edge`,
   );
-  $("grid-help").textContent =
-    `${divisions} squares along the slide’s shorter edge.` +
-    (divisions === 42
-      ? " The familiar proportions of 5 mm grid paper on A4."
-      : " Squares scale with each page, keeping the same proportions.");
+  $("grid-help").textContent = `${divisions} squares along the shorter edge.`;
 }
 
 function clearResults() {
@@ -177,8 +173,8 @@ function resetPreview() {
   $("preview-canvas").hidden = true;
   $("demo-slide").hidden = false;
   $("slide-frame").style.aspectRatio = "16 / 10";
-  $("preview-badge").textContent = "Example slide";
-  $("preview-caption").textContent = "Same slide. More possibilities.";
+  $("preview-badge").textContent = "Example";
+  $("preview-caption").textContent = "";
   $("preview-error").textContent = "";
   $("page-controls").hidden = true;
   updateGrid();
@@ -216,12 +212,12 @@ async function selectPreview(item) {
       return;
     }
     state.pdf = pdf;
-    $("preview-badge").textContent = "Your slide";
+    $("preview-badge").textContent = "";
     $("page-controls").hidden = pdf.numPages <= 1;
     await renderPreview();
   } catch (error) {
     if (generation !== state.previewGeneration) return;
-    $("preview-badge").textContent = "Example slide";
+    $("preview-badge").textContent = "Example";
     $("preview-error").textContent =
       error.name === "PasswordException"
         ? "Password-protected PDF. Export an unlocked copy to use it here."
@@ -291,8 +287,8 @@ function setBusy(busy) {
   $("drop-zone").setAttribute("aria-disabled", String(busy));
   $("progress-area").hidden = !busy;
   $("convert-button").querySelector("span").textContent = busy
-    ? "Making room…"
-    : "Make room for notes";
+    ? "Processing…"
+    : "Add grid paper";
   renderFiles();
 }
 

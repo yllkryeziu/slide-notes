@@ -17,7 +17,7 @@ The original slide retains its size. The finished page is 2.5 times as wide. Gri
 1. Drop in any number of PDFs or choose them in the file picker.
 2. Click a filename to preview it. Use the arrows to inspect different pages.
 3. Adjust square size or line contrast if needed.
-4. Click **Make room for notes**, then **Download all as ZIP**. The arrows beside completed files download individual PDFs.
+4. Click **Add grid paper**, then **Download all as ZIP**. The arrows beside completed files download individual PDFs.
 
 All processing happens on your device. No PDFs are uploaded, stored on a server, or sent to an analytics service. Fonts, preview assets and scripts are served with the site. Reloading clears the selection and results.
 
@@ -58,5 +58,3 @@ PDF checks compare rendered slides before and after conversion at all four rotat
 The included workflow tests and builds the app, then deploys it on every push to `main`. Set **Settings → Pages → Source** to **GitHub Actions** once for the repository.
 
 Built with [pdf-lib](https://pdf-lib.js.org/), [PDF.js](https://mozilla.github.io/pdf.js/), [fflate](https://github.com/101arrowz/fflate), and [Vite](https://vite.dev/).
-
-The self-hosted Newsreader typeface is licensed under the SIL Open Font License; see `public/fonts/OFL.txt`.

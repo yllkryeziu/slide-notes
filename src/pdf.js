@@ -57,7 +57,7 @@ function gridPanel(page, x, width, height, spacing, tone) {
   );
   page.drawRectangle({ x, y: 0, width, height, color: rgb(1, 1, 1) });
   const shade = tone === "dark" ? rgb(0.65, 0.72, 0.71) : rgb(0.8, 0.85, 0.84);
-  const operators = [setStrokingColor(shade), setLineWidth(spacing * 0.025)];
+  const operators = [setStrokingColor(shade), setLineWidth(spacing * 0.02)];
   // Start each grid at the slide edge; horizontal rules align across both panels.
   const edge = x < 0 ? 0 : x;
   const direction = x < 0 ? -1 : 1;

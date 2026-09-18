@@ -20,7 +20,7 @@ test("previews and exports a batch, preserving separate PDFs and skipping a corr
   });
   await page.goto("/");
   await expect(
-    page.getByRole("button", { name: "Make room for notes" }),
+    page.getByRole("button", { name: "Add grid paper" }),
   ).toBeDisabled();
   await page.locator("#file-input").setInputFiles([
     {
@@ -45,7 +45,7 @@ test("previews and exports a batch, preserving separate PDFs and skipping a corr
   await expect(page.locator("#page-number")).toHaveText("1 / 4");
   await page.getByRole("button", { name: "Next page", exact: true }).click();
   await expect(page.locator("#page-number")).toHaveText("2 / 4");
-  await page.getByRole("button", { name: "Make room for notes" }).click();
+  await page.getByRole("button", { name: "Add grid paper" }).click();
   await expect(
     page.getByRole("link", { name: "Download all as ZIP" }),
   ).toBeVisible();
@@ -119,7 +119,7 @@ test("drag and drop, duplicate selection, defined grid and a single PDF download
     "already selected",
   );
   await page.getByRole("radio", { name: "Defined" }).check();
-  await page.getByRole("button", { name: "Make room for notes" }).click();
+  await page.getByRole("button", { name: "Add grid paper" }).click();
   const link = page.getByRole("link", { name: "Download Überblick-notes.pdf" });
   await expect(link).toBeVisible();
   const downloadPromise = page.waitForEvent("download");
@@ -130,6 +130,6 @@ test("drag and drop, duplicate selection, defined grid and a single PDF download
   await page.getByRole("button", { name: "Remove Überblick.pdf" }).click();
   await expect(page.locator("#download-area")).toBeHidden();
   await expect(
-    page.getByRole("button", { name: "Make room for notes" }),
+    page.getByRole("button", { name: "Add grid paper" }),
   ).toBeDisabled();
 });
